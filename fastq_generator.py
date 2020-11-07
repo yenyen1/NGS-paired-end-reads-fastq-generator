@@ -3,14 +3,6 @@
 # author: yenyen.wang
 # created by 2020.10.12
 
-''' 
-[paired-end fastq file format]
-@ read_name1
-nucleotide sequences
-+
-quality scores (all 'I')
-'''
-
 import argparse, sys
 from os import path
 from pysam import FastxFile
@@ -85,7 +77,7 @@ def main():
     parser.add_argument("FASTA_PATH", help = "A fasta file which includes the reference sequences that you're interested.")
     parser.add_argument("-t1", "--target1", required = True, type = str, help = "Specified your target reference name. (must be identical with the name in fasta file)")
     parser.add_argument("-t2", "--target2", default = "*", type = str, help = "Specified another target reference name if it's heterozigous")
-    parser.add_argument("-o", "--OUTPUT", required = True, type = str, help = "The average length of reads. (Default: 150)")
+    parser.add_argument("-o", "--OUTPUT", required = True, type = str, help = "Output file name (without extension)")
 
     parser.add_argument("-r", "--read_len", default = 150, type = int, help = "The average length of reads. (Default: 150)")
     parser.add_argument("-f", "--frag_len", default = 450, type = int, help = "The average length of DNA fragments. (Default: 450)")
