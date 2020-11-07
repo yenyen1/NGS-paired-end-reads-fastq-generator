@@ -2,7 +2,7 @@
 A python program used to generate a perfect NGS paired-end reads fastq file. 
 It's created for simulation purpose. I used it to evaluate the performance of alignments, calling accuracy, etc.  
 Since it aims to create a "perfect" data, the phred quality score for each base is setted to "I".
-Reads are assumed to be uniformly distributed with a N(0,1) shift.
+Reads are assumed to be uniformly distributed with a N(0,1) shift and probability of reverse complement is set to 0.5.
 
 # Requirement
 
