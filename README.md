@@ -4,16 +4,17 @@ It's created for simulation purpose. I used it to evaluate the performance of al
 Since it aims to create a "perfect" data, the phred quality score for each base is setted to "I".
 Reads are assumed to be uniformly distributed with a normal(0,1) shift.
 
-**Requirement**
+# Requirement
 
 pyhon3
 
 pysam (pip install pysam)
 
 
-**Arguments**
 
-Fasta file at first place
+# Arguments
+
+Fasta file at first place 
 
 -t1   Specified your target reference name. (must be identical with the name in fasta file)")
 
@@ -28,6 +29,7 @@ Fasta file at first place
 -d    The average alignment depth. (Default: 30)
 
 
+# usage
 **Example for homozygous** 
 ```
 python fastq_generator.py file.fasta -t1 HLA:HLA02169 -o output -r 150 -f 450 -d 30
@@ -41,6 +43,7 @@ python fastq_generator.py file.fasta -t1 HLA:HLA02169 -t1 HLA:HLA02169 -t2 HLA:H
 ```
 It generates two fq files (output1.fq and output2.fq)  for first read and second read.
 
+# output
 **Output format**
 ```
 @simulate_targetname_1_read0/1
