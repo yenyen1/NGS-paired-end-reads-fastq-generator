@@ -8,10 +8,11 @@ from os import path
 from pysam import FastxFile
 from random import getrandbits, normalvariate
 
-def parseFasta(filepath:str, ref_dict:dict) -> dict:
+def parseFasta(filepath:str, ref_dict:dict, target1:str, target2:str) -> dict:
     fasta = FastxFile(filepath)
     for ref in fasta:
-        ref_dict[ref.name] = ref.sequence
+        if target1 == ref.name or target2 == ref.name:
+            ref_dict[ref.name] = ref.sequence
     return ref_dict
     
 def to_string(first:str, second:str) -> str:
@@ -42,8 +43,8 @@ def getGap(coverage: float, read_len: int, frag_len: int, ref_len: int) -> int:
 
 def generateFastq(is_hetero:bool, no:int, target:str, refSeq:str, output:str, read_len:int, frag_len:int, depth:int):
     if len(refSeq) > 0:
-        f1 = open(output+"1.fq", 'a+')
-        f2 = open(output+"2.fq", 'a+')
+        f1 = open(output+"_1.fq", 'a+')
+        f2 = open(output+"_2.fq", 'a+')
 
         gap = getGap(depth/2, read_len, frag_len, len(refSeq)) if is_hetero else getGap(depth, read_len, frag_len, len(refSeq))
         refpos = int( (len(refSeq) - frag_len + 1) /gap )
@@ -89,7 +90,7 @@ def main():
         sys.exit()
 
     hla_dict = {}
-    hla_dict = parseFasta(args.FASTA_PATH, hla_dict)
+    hla_dict = parseFasta(args.FASTA_PATH, hla_dict, args.target1, args.target2)
 
     is_hetero = (args.target2 != "*")
     if is_hetero:
